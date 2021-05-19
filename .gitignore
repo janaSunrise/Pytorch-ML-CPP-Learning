@@ -59,3 +59,8 @@ dkms.conf
 TODO
 
 .DS_STORE
+
+test/
+build/
+libtorch/
+data/
