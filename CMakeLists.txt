@@ -17,7 +17,6 @@ endif()
 
 # Project configuration
 set(EXECUTABLE_NAME pytorch-cpp-ml-learning)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
 add_executable(${EXECUTABLE_NAME} src/main.cpp)
 set_target_properties(${EXECUTABLE_NAME} PROPERTIES
