@@ -18,7 +18,9 @@ endif()
 # Project configuration
 set(EXECUTABLE_NAME pytorch-cpp-ml-learning)
 
-add_executable(${EXECUTABLE_NAME} src/main.cpp)
+add_executable(${EXECUTABLE_NAME})
+target_sources(${EXECUTABLE_NAME} PRIVATE main.cpp)
+
 set_target_properties(${EXECUTABLE_NAME} PROPERTIES
   CXX_STANDARD 14
   CXX_STANDARD_REQUIRED YES
@@ -34,7 +36,15 @@ file(MAKE_DIRECTORY ${DATA_DIR})
 add_custom_target(
     mnist COMMAND ${CMAKE_COMMAND} -D DATA_DIR=${DATA_DIR} -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fetch_mnist.cmake
 )
-add_dependencies(${EXECUTABLE_NAME} mnist)
+
+# Sub directories
+add_subdirectory("src/mnist_classifier")
+
+add_custom_target(src)
+
+add_dependencies(src
+    mnist_classifier
+)
 
 # Windows config
 if(MSVC)
