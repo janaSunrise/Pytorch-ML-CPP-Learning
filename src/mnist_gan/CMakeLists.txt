@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
-project(gans VERSION 1.0.0 LANGUAGES CXX)
+project(mnist_gan VERSION 1.0.0 LANGUAGES CXX)
 
-set(EXECUTABLE_NAME gans)
+set(EXECUTABLE_NAME mnist_gan)
 
 add_executable(${EXECUTABLE_NAME})
 target_sources(${EXECUTABLE_NAME} PRIVATE main.cpp)
