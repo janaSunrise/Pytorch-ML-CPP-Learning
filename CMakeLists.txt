@@ -40,12 +40,14 @@ add_custom_target(
 # Sub directories
 add_subdirectory("src/mnist_classifier")
 add_subdirectory("src/gans")
+add_subdirectory("src/regression")
 
 add_custom_target(src)
 
 add_dependencies(src
     mnist_classifier
     gans
+    regression
 )
 
 # Windows config
