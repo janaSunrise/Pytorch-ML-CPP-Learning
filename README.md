@@ -15,8 +15,28 @@ Here's how to install the dependencies, and get started.
 - Make a build folder, if it doesn't exist: `mkdir build`
 - CD into the build folder: `cd build`
 - Install the dependencies, using `cmake ..` and then `cmake --build . --config Release`
-- Once done, you can run any of the projects, by visiting `build/src/<the-project-you-want-to-check>` and then
-  running the binary present in it.
+
+Here are the steps to run the executables, once compiled!
+
+- Change to the respective directory for the program you wish to run.
+  ```sh
+  cd build/src/<the-folder-you-want-to-check>
+  # Example: If I want to run the Regression example
+  cd build/src/regression
+  ```
+- Run the executable for your Respective OS
+  - Linux / MacOS
+    ```sh
+    ./<executable-file>
+    # Example: If I want to run the Regression example
+    ./regression  # Can change based on the name of executable
+    ```
+  - Windows
+    ```powershell
+    .\<executable-file>.exe
+    # Example: If I want to run the Regression example
+    .\regression.exe  # Can change based on the name of executable
+    ```
 
 ## Contributing
 
