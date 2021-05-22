@@ -44,7 +44,6 @@ add_subdirectory("src/regression")
 add_subdirectory("src/autograd")
 
 add_custom_target(src)
-
 add_dependencies(src
     mnist_classifier
     mnist_gan
