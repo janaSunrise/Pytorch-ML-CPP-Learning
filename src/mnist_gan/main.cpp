@@ -14,7 +14,7 @@ const int64_t kBatchSize = 64;
 const int64_t kNumberOfEpochs = 30;
 
 // Where to find the MNIST dataset.
-const char* kDataFolder = "../data/mnist";
+const std::string kDataFolder = "../../../data/mnist";
 
 // After how many batches to create a new checkpoint periodically.
 const int64_t kCheckpointEvery = 200;
@@ -86,6 +86,9 @@ int main(int argc, const char* argv[]) {
     if (torch::cuda::is_available()) {
         std::cout << "CUDA is available! Training on GPU." << std::endl;
         device = torch::Device(torch::kCUDA);
+    } else {
+        std::cout << "Training on CPU." << std::endl;
+        device = torch::Device(torch::kCPU);
     }
 
     DCGANGenerator generator(kNoiseSize);
