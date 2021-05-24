@@ -151,7 +151,7 @@ auto main() -> int {
                         .map(torch::data::transforms::Stack<>());
 
     const size_t test_dataset_size = test_dataset.size().value();
-    auto test_loader =torch::data::make_data_loader(std::move(test_dataset), kTestBatchSize);
+    auto test_loader = torch::data::make_data_loader(std::move(test_dataset), kTestBatchSize);
 
     torch::optim::SGD optimizer(
         model.parameters(), torch::optim::SGDOptions(0.01).momentum(0.5)
