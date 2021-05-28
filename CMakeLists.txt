@@ -44,6 +44,7 @@ add_subdirectory("src/regression")
 add_subdirectory("src/autograd")
 add_subdirectory("src/tensors")
 add_subdirectory("src/recurrent_neural_networks")
+add_subdirectory("src/bidirectional_rnns")
 
 add_custom_target(src)
 add_dependencies(src
@@ -53,6 +54,7 @@ add_dependencies(src
     autograd
     tensors
     recurrent_neural_networks
+    bidirectional_rnns
 )
 
 # Windows config
