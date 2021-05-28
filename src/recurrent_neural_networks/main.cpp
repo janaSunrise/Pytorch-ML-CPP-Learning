@@ -6,8 +6,11 @@
 const int64_t sequence_length = 28;
 
 const int64_t input_size = 28;
+
 const int64_t hidden_size = 128;
+
 const int64_t num_layers = 2;
+
 const int64_t num_classes = 10;
 
 const int64_t batch_size = 100;
