@@ -84,7 +84,7 @@ auto main() -> int {
     // Set floating point output precision
     std::cout << std::fixed << std::setprecision(4);
 
-    std::cout << "Training...\n";
+    std::cout << "Training..." << std::endl;
 
     // Train the model
     for (size_t epoch = 0; epoch != num_epochs; ++epoch) {
