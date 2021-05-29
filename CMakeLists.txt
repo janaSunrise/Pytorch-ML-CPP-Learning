@@ -45,6 +45,7 @@ add_subdirectory("src/autograd")
 add_subdirectory("src/tensors")
 add_subdirectory("src/recurrent_neural_networks")
 add_subdirectory("src/bidirectional_rnns")
+add_subdirectory("src/convolutional_nets")
 
 add_custom_target(src)
 add_dependencies(src
@@ -55,6 +56,7 @@ add_dependencies(src
     tensors
     recurrent_neural_networks
     bidirectional_rnns
+    convolutional_nets
 )
 
 # Windows config
