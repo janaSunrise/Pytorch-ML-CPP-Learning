@@ -1,13 +1,13 @@
 # ML using Pytorch in C++
 
-A simple repo, to learn using Pytorch C++ API, for Deep Learning programs.
+A simple repo to learn using Pytorch C++ API, for Deep Learning programs.
 
 **Note**: This is just a repo, for quick references to setup `cmake`, use libtorch and other purposes. 
 The code shouldn't be used in production, or anything serious.
 
 ## Installation and usage.
 
-This project uses `cmake` for dependency management. You need to ensure that you have `cmake` and `GCC runtime`
+This project uses `CMake` of minimum `3.14` for dependency management. You need to ensure that you have `cmake` and `GCC runtime`
 installed on your system.
 
 Here's how to install the dependencies, and get started.
