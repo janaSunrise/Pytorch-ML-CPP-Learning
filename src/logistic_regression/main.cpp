@@ -1,3 +1,5 @@
+#include <torch/torch.h>
+
 #include <iostream>
 
 // Hyperparameters
@@ -47,4 +49,86 @@ int main() {
     const size_t test_dataset_size = test_dataset.size().value();
 
     auto test_loader = torch::data::make_data_loader(std::move(test_dataset), batch_size);
+
+    // Create model
+    torch::nn::Linear model(input_size, num_classes);
+    model->to(device);
+
+    torch::optim::SGD optimizer(model->parameters(), torch::optim::SGDOptions(learning_rate));
+
+    // Set floating point output precision
+    std::cout << std::fixed << std::setprecision(4);
+
+    std::cout << "Training..." << std::endl;
+
+    // Train the model
+    for (size_t epoch = 0; epoch != num_epochs; ++epoch) {
+        // Initialize running metrics
+        double running_loss = 0.0;
+        size_t num_correct = 0;
+
+        for (auto& batch : *train_loader) {
+            // Transfer images and target labels to device
+            auto data = batch.data.view({batch_size, -1}).to(device);
+            auto target = batch.target.to(device);
+
+            // Forward pass
+            auto output = model->forward(data);
+
+            // Calculate loss
+            auto loss = torch::nn::functional::cross_entropy(output, target);
+
+            // Update running loss
+            running_loss += loss.item<double>() * data.size(0);
+
+            // Calculate prediction
+            auto prediction = output.argmax(1);
+
+            // Update number of correctly classified samples
+            num_correct += prediction.eq(target).sum().item<int64_t>();
+
+            // Backward pass and optimize
+            optimizer.zero_grad();
+            loss.backward();
+            optimizer.step();
+        }
+
+        auto sample_mean_loss = running_loss / train_dataset_size;
+        auto accuracy = static_cast<float>(num_correct) / train_dataset_size;
+
+        std::cout << "Epoch ["
+                  << (epoch + 1) << "/" << num_epochs
+                  << "], Train - Loss: "
+                  << sample_mean_loss << " | Accuracy: " << accuracy << std::endl;
+    }
+
+    std::cout << "Training finished!\n" << std::endl;
+    std::cout << "Testing..." << std::endl;
+
+    // Test the model
+    model->eval();
+    torch::NoGradGuard no_grad;
+
+    double running_loss = 0.0;
+    size_t num_correct = 0;
+
+    for (const auto& batch : *test_loader) {
+        auto data = batch.data.view({batch_size, -1}).to(device);
+        auto target = batch.target.to(device);
+
+        auto output = model->forward(data);
+
+        auto loss = torch::nn::functional::cross_entropy(output, target);
+        running_loss += loss.item<double>() * data.size(0);
+
+        auto prediction = output.argmax(1);
+        num_correct += prediction.eq(target).sum().item<int64_t>();
+    }
+
+    std::cout << "Testing finished!" << std::endl;
+
+    auto test_accuracy = static_cast<double>(num_correct) / test_dataset_size;
+    auto test_sample_mean_loss = running_loss / test_dataset_size;
+
+    std::cout << "Testing | Loss: " << test_sample_mean_loss << " | Accuracy: " << test_accuracy << std::endl;
 }
