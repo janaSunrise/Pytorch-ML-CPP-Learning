@@ -46,6 +46,7 @@ add_subdirectory("src/tensors")
 add_subdirectory("src/recurrent_neural_networks")
 add_subdirectory("src/bidirectional_rnns")
 add_subdirectory("src/convolutional_nets")
+add_subdirectory("src/logistic_regression")
 
 add_custom_target(src)
 add_dependencies(src
@@ -57,6 +58,7 @@ add_dependencies(src
     recurrent_neural_networks
     bidirectional_rnns
     convolutional_nets
+    logistic_regression
 )
 
 # Windows config
