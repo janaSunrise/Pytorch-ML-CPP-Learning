@@ -2,8 +2,8 @@
 
 A simple repo to learn using Pytorch C++ API, for Deep Learning programs.
 
-**Note**: This is just a repo, for quick references to setup `cmake`, use libtorch and other purposes. 
-The code shouldn't be used in production, or anything serious.
+**Note**: This is just a repo, for quick references to setup `cmake`, use libtorch and how to 
+build amazing ML models using Pytorch. The code shouldn't be used in production, or anything serious.
 
 ## Installation and usage.
 
